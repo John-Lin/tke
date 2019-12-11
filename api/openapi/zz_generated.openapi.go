@@ -735,6 +735,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"tkestack.io/tke/api/auth/v1.LocalIdentitySpec":                               schema_tke_api_auth_v1_LocalIdentitySpec(ref),
 		"tkestack.io/tke/api/auth/v1.LocalIdentityStatus":                             schema_tke_api_auth_v1_LocalIdentityStatus(ref),
 		"tkestack.io/tke/api/auth/v1.NonResourceAttributes":                           schema_tke_api_auth_v1_NonResourceAttributes(ref),
+		"tkestack.io/tke/api/auth/v1.PasswordReq":                                     schema_tke_api_auth_v1_PasswordReq(ref),
 		"tkestack.io/tke/api/auth/v1.Policy":                                          schema_tke_api_auth_v1_Policy(ref),
 		"tkestack.io/tke/api/auth/v1.PolicyBinding":                                   schema_tke_api_auth_v1_PolicyBinding(ref),
 		"tkestack.io/tke/api/auth/v1.PolicyList":                                      schema_tke_api_auth_v1_PolicyList(ref),
@@ -34696,12 +34697,6 @@ func schema_tke_api_auth_v1_LocalIdentitySpec(ref common.ReferenceCallback) comm
 							Format: "",
 						},
 					},
-					"originalPassword": {
-						SchemaProps: spec.SchemaProps{
-							Type:   []string{"string"},
-							Format: "",
-						},
-					},
 					"tenantID": {
 						SchemaProps: spec.SchemaProps{
 							Type:   []string{"string"},
@@ -34794,6 +34789,45 @@ func schema_tke_api_auth_v1_NonResourceAttributes(ref common.ReferenceCallback) 
 							Description: "Verb is the standard HTTP verb",
 							Type:        []string{"string"},
 							Format:      "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_tke_api_auth_v1_PasswordReq(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "PasswordReq contains info to update password for a localIdentity",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"hashedPassword": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"originalPassword": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
 						},
 					},
 				},
