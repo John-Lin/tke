@@ -33899,7 +33899,15 @@ func schema_tke_api_auth_v1_APIKeyStatus(ref common.ReferenceCallback) common.Op
 							Format:      "",
 						},
 					},
+					"expired": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Expired represents whether the apikey has been expired.",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 				},
+				Required: []string{"expired"},
 			},
 		},
 	}
